@@ -23,9 +23,12 @@ UserSchema.pre('save',async function(next){
     next()
 })
 
-//ispassword match we define
-UserSchema.methods.isPasswordMatch = async function (enteredPassword) {
-    return await bcrypt.compare(enteredPassword, this.password);
+//ispassword match we define-->entered is what we we enter
+UserSchema.methods.isPasswordMatch = async function (password) {
+    console.log(password)
+    console.log(',,',this.password)
+    return await bcrypt.compare(password, this.password);
+
   };
 
 const User=mongoose.model('User',UserSchema);
